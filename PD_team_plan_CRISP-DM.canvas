@@ -1,0 +1,55 @@
+{
+"nodes":[
+{"id":"title","type":"text","text":"# Team Plan — 4 people × CRISP-DM\nProject: Parkinson's multi-agent pathway discovery.\n**Rule:** if Evaluation misses the success criteria → loop back to Business / Data Understanding.","x":0,"y":-520,"width":1880,"height":120},
+
+{"id":"h1","type":"text","text":"# Person 1 — Orchestration & Integration Lead\n**Owns:** Orchestrator (A0), shared state, evaluation harness runs, demo","x":0,"y":-340,"width":440,"height":170,"color":"1"},
+{"id":"h2","type":"text","text":"# Person 2 — Data Engineer\n**Owns:** A1 Disease–Gene, A2 PPI, A3 Pathway, ID mapping, hold-out splits","x":480,"y":-340,"width":440,"height":170,"color":"4"},
+{"id":"h3","type":"text","text":"# Person 3 — Graph & ML Scientist\n**Owns:** A5 Graph Builder, A6 Ranker, metrics and baselines","x":960,"y":-340,"width":440,"height":170,"color":"2"},
+{"id":"h4","type":"text","text":"# Person 4 — LLM, Literature & Reporting\n**Owns:** A4 Literature, A7 Hypothesis, A8 Critic, A9 Report, domain review","x":1440,"y":-340,"width":440,"height":170,"color":"6"},
+
+{"id":"r1","type":"text","text":"## 1. Business Understanding\nWhat problem are we solving? How will we know it worked?","x":-480,"y":0,"width":420,"height":270,"color":"5"},
+{"id":"r2","type":"text","text":"## 2. Data Understanding\nWhat do the 5 sources actually contain?","x":-480,"y":300,"width":420,"height":270,"color":"5"},
+{"id":"r3","type":"text","text":"## 3. Data Preparation\nMap IDs, build the graph, create the hold-out","x":-480,"y":600,"width":420,"height":270,"color":"5"},
+{"id":"r4","type":"text","text":"## 4. Modeling\nAgents, graph algorithms, LLM hypotheses","x":-480,"y":900,"width":420,"height":270,"color":"5"},
+{"id":"r5","type":"text","text":"## 5. Evaluation\nHide known links → are they re-discovered? Are citations valid?","x":-480,"y":1200,"width":420,"height":270,"color":"5"},
+{"id":"r6","type":"text","text":"## 6. Deployment\nRunnable pipeline, report, demo, documentation","x":-480,"y":1500,"width":420,"height":270,"color":"5"},
+
+{"id":"c11","type":"text","text":"- Project charter and scope\n- Success criteria: Recall@k, citation-validity rate\n- Define the 'simulated breakthrough' rule\n- Pick framework + LLM API","x":0,"y":0,"width":440,"height":270,"color":"1"},
+{"id":"c12","type":"text","text":"- List the fields needed from each source\n- Check API limits and licences (KEGG = academic use)\n- Agree what counts as a 'known link' (ground truth)","x":480,"y":0,"width":440,"height":270,"color":"4"},
+{"id":"c13","type":"text","text":"- Frame the task: predict missing disease → pathway/gene links\n- Pick metrics: Recall@k, MRR, AUROC/AUPRC\n- Pick baselines: random, degree, shortest-path only","x":960,"y":0,"width":440,"height":270,"color":"2"},
+{"id":"c14","type":"text","text":"- Parkinson primer: key genes and pathways\n- Rules for 'known' vs 'novel'\n- Citation and evidence standard for the report","x":1440,"y":0,"width":440,"height":270,"color":"6"},
+
+{"id":"c21","type":"text","text":"- Draft agent I/O contracts once real responses are seen\n- Draft the shared-state object\n- Repo, environment, logging","x":0,"y":300,"width":440,"height":270,"color":"1"},
+{"id":"c22","type":"text","text":"- Explore Open Targets (EFO_0002508), STRING, Reactome, KEGG hsa05012\n- Report coverage, ID formats, gaps","x":480,"y":300,"width":440,"height":270,"color":"4"},
+{"id":"c23","type":"text","text":"- Degree distribution and hub bias\n- Overlap between sources\n- Sketch graph schema (node and edge types)","x":960,"y":300,"width":440,"height":270,"color":"2"},
+{"id":"c24","type":"text","text":"- PubMed query design (MeSH: Parkinson Disease)\n- Publication-year distribution\n- Try LLM extraction on ~20 abstracts","x":1440,"y":300,"width":440,"height":270,"color":"6"},
+
+{"id":"c31","type":"text","text":"- Orchestrator skeleton with stub agents\n- Caching and run-log conventions\n- Early integration test with mock data","x":0,"y":600,"width":440,"height":270,"color":"1"},
+{"id":"c32","type":"text","text":"- Collectors A1–A3 (cache, retry, rate-limit)\n- ID normalisation (HGNC / Ensembl / UniProt)\n- Versioned data snapshot + hold-out splits","x":480,"y":600,"width":440,"height":270,"color":"4"},
+{"id":"c33","type":"text","text":"- Graph Builder A5: merge, dedupe, weights\n- Provenance on every edge\n- Graph sanity statistics","x":960,"y":600,"width":440,"height":270,"color":"2"},
+{"id":"c34","type":"text","text":"- Literature Agent A4: retrieve, clean, extract mentions\n- Date filter for the temporal cutoff\n- Keep PMIDs for provenance","x":1440,"y":600,"width":440,"height":270,"color":"6"},
+
+{"id":"c41","type":"text","text":"- Orchestrator logic: parallel dispatch, gates\n- Critic ↔ Hypothesis loop control\n- EVAL-mode switch; end-to-end integration","x":0,"y":900,"width":440,"height":270,"color":"1"},
+{"id":"c42","type":"text","text":"- Extend collectors (2nd-shell PPI, Reactome ↔ KEGG mapping)\n- Tune thresholds with Person 3\n- Data-refresh support","x":480,"y":900,"width":440,"height":270,"color":"4"},
+{"id":"c43","type":"text","text":"- Ranker A6: shortest paths, random walk, link prediction\n- Score fusion + novelty filter\n- Hub-bias correction","x":960,"y":900,"width":440,"height":270,"color":"2"},
+{"id":"c44","type":"text","text":"- Hypothesis Generator A7 (structured cards)\n- Evidence Critic A8 (citation check)\n- Report Writer A9 (template)","x":1440,"y":900,"width":440,"height":270,"color":"6"},
+
+{"id":"c51","type":"text","text":"- Run hold-out experiments, repeated seeds\n- Ablations: drop each agent / tool\n- Compile the results table","x":0,"y":1200,"width":440,"height":270,"color":"1"},
+{"id":"c52","type":"text","text":"- Leakage audit: masked links absent from every source\n- Check snapshot versions and cutoff dates","x":480,"y":1200,"width":440,"height":270,"color":"4"},
+{"id":"c53","type":"text","text":"- Compute Recall@k, MRR, AUROC/AUPRC vs baselines\n- Error analysis (hubs, misses)\n- Tune fusion weights on the validation split only","x":960,"y":1200,"width":440,"height":270,"color":"2"},
+{"id":"c54","type":"text","text":"- Citation-validity and hallucination audit\n- Expert plausibility review of top hypotheses\n- Run the simulated-breakthrough scenario","x":1440,"y":1200,"width":440,"height":270,"color":"6"},
+
+{"id":"c61","type":"text","text":"- One-command run + README\n- Architecture diagram\n- Live demo for 'Parkinson disease'; lead the presentation","x":0,"y":1500,"width":440,"height":270,"color":"1"},
+{"id":"c62","type":"text","text":"- Document sources, versions, licences\n- Ship a reproducible data snapshot","x":480,"y":1500,"width":440,"height":270,"color":"4"},
+{"id":"c63","type":"text","text":"- Document algorithms and parameters\n- Result figures + graph visualisation of top pathways","x":960,"y":1500,"width":440,"height":270,"color":"2"},
+{"id":"c64","type":"text","text":"- Final explained Parkinson report\n- Limitations and ethics ('in-silico hypothesis')\n- Slides / narrative","x":1440,"y":1500,"width":440,"height":270,"color":"6"}
+],
+"edges":[
+{"id":"f12","fromNode":"r1","fromSide":"bottom","toNode":"r2","toSide":"top"},
+{"id":"f23","fromNode":"r2","fromSide":"bottom","toNode":"r3","toSide":"top"},
+{"id":"f34","fromNode":"r3","fromSide":"bottom","toNode":"r4","toSide":"top"},
+{"id":"f45","fromNode":"r4","fromSide":"bottom","toNode":"r5","toSide":"top"},
+{"id":"f56","fromNode":"r5","fromSide":"bottom","toNode":"r6","toSide":"top"},
+{"id":"loop","fromNode":"r5","fromSide":"left","toNode":"r1","toSide":"left","label":"iterate if success criteria not met","color":"1"}
+]
+}
