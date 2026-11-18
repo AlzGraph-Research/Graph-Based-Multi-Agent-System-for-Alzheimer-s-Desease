@@ -5,7 +5,7 @@ How we work together on this repo. Keep it simple, and ask in the group chat if 
 ## 1. Get the repo
 
 ```bash
-git clone https://github.com/ZeeetOne/Graph-Based-Multi-Agent-System-for-Alzheimer-s-Desease.git
+git clone https://github.com/AlzGraph-Research/Graph-Based-Multi-Agent-System-for-Alzheimer-s-Desease.git
 cd Graph-Based-Multi-Agent-System-for-Alzheimer-s-Desease
 ```
 
